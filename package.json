@@ -1,0 +1,15 @@
+{
+  "name": "confoo-2026-talk2-slides",
+  "version": "1.0.0",
+  "description": "Safe Agentic Coding — ConFoo 2026 talk slides",
+  "private": true,
+  "scripts": {
+    "dev": "slidev",
+    "build": "slidev build",
+    "export": "slidev export"
+  },
+  "dependencies": {
+    "@slidev/cli": "latest",
+    "@slidev/theme-default": "latest"
+  }
+}
