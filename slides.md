@@ -3,17 +3,29 @@ theme: default
 title: "Agentic Coding: Building Features with AI Teammates"
 info: |
   Specs, Subagents, and Verification Loops
-class: text-center
+class: text-center text-white
+background: /img/team-collab.jpg
 drawings:
   persist: false
 transition: slide-left
 ---
+
+<div class="absolute inset-0 bg-black/60 z-1"></div>
+
+<div class="relative z-2">
 
 # Agentic Coding
 
 ### Building Features with AI Teammates
 
 Rida Al Barazi · ConFoo 2026
+
+</div>
+
+<div class="absolute bottom-8 right-8 flex items-center gap-2 z-2">
+<img src="/feedback-qr.png" class="w-24 h-24" alt="Feedback QR" />
+<span class="text-xs text-gray-400">Feedback</span>
+</div>
 
 <!--
 Welcome everyone. Friday, 11am, right before lunch. I promise to earn your attention.
@@ -39,8 +51,13 @@ Today is the operator playbook. The tactics.
 
 ---
 layout: center
-class: text-center
+class: text-center text-white
+background: /img/arcade.jpg
 ---
+
+<div class="absolute inset-0 bg-black/55 z-1"></div>
+
+<div class="relative z-2">
 
 <div class="text-6xl mb-8">🎰</div>
 
@@ -50,7 +67,9 @@ Allow. Allow. Allow.
 
 "Done."
 
-<p class="text-gray-400 mt-4 text-sm">...it was not done.</p>
+<p class="text-gray-300 mt-4 text-sm">...it was not done.</p>
+
+</div>
 
 <!--
 Raise your hand if this sounds familiar.
@@ -155,10 +174,17 @@ Let's go through each one.
 
 ---
 layout: center
-class: text-center bg-black text-white
+class: text-center text-white
+background: /img/blueprint.jpg
 ---
 
+<div class="absolute inset-0 bg-black/60 z-1"></div>
+
+<div class="relative z-2">
+
 # 📋 The Spec
+
+</div>
 
 ---
 
@@ -310,10 +336,17 @@ Do the same for your agent.
 
 ---
 layout: center
-class: text-center bg-black text-white
+class: text-center text-white
+background: /img/circuit-board.jpg
 ---
 
+<div class="absolute inset-0 bg-black/55 z-1"></div>
+
+<div class="relative z-2">
+
 # 🔄 The Verification Loop
+
+</div>
 
 ---
 
@@ -463,10 +496,17 @@ Feed the results back as input.
 
 ---
 layout: center
-class: text-center bg-black text-white
+class: text-center text-white
+background: /img/puzzle.jpg
 ---
 
+<div class="absolute inset-0 bg-black/65 z-1"></div>
+
+<div class="relative z-2">
+
 # 🧩 Decomposition
+
+</div>
 
 ---
 
@@ -893,8 +933,13 @@ Fix that, and the results change dramatically.
 
 ---
 layout: center
-class: text-center
+class: text-center text-white
+background: /img/team-collab.jpg
 ---
+
+<div class="absolute inset-0 bg-black/65 z-1"></div>
+
+<div class="relative z-2">
 
 # 🙏 Thank you
 
@@ -902,11 +947,13 @@ class: text-center
 
 rida.me · @rida
 
-<div class="mt-4 text-gray-400 text-sm">
+<div class="mt-4 text-gray-300 text-sm">
 
 BranchBox: github.com/branchbox/branchbox
 
 Blog posts on all of this: rida.me/blog
+
+</div>
 
 </div>
 
@@ -922,3 +969,24 @@ Happy to chat after — I'll be around for the rest of the day.
 
 Enjoy lunch!
 -->
+
+---
+layout: center
+class: text-center
+---
+
+# 📝 Feedback
+
+<img src="/feedback-qr.png" class="w-64 h-64 mx-auto my-4" alt="Feedback QR Code" />
+
+<div class="text-lg mt-2">
+
+confoo.ca/f/B1E9D3155640A9D8A5F4E90DF8874288
+
+</div>
+
+<div class="text-gray-400 text-sm mt-4">
+
+Scan or visit the link — your feedback helps!
+
+</div>
