@@ -1,8 +1,8 @@
 ---
 theme: seriph
-title: "Agentic Coding: Building Features with AI Teammates"
+title: "Agentic Coding: Live Demo"
 info: |
-  Specs, Subagents, and Verification Loops
+  Rebuilding ConFoo's website with parallel AI agents
 class: text-center
 background: /img/team-collab.jpg
 drawings:
@@ -23,7 +23,7 @@ fonts:
 
 <h1 class="!text-6xl !font-light tracking-tight !leading-tight !mb-0 text-white drop-shadow-lg">Agentic Coding</h1>
 
-<p class="text-xl text-white/80 mt-6 font-light tracking-wide drop-shadow-md">Building Features with AI Teammates</p>
+<p class="text-xl text-white/80 mt-6 font-light tracking-wide drop-shadow-md">Rebuilding ConFoo's Website with AI Agents</p>
 
 <div class="mt-16 text-white/50 text-sm tracking-[0.2em] uppercase">
 Rida Al Barazi · ConFoo 2026
@@ -37,11 +37,13 @@ Rida Al Barazi · ConFoo 2026
 </div>
 
 <!--
-Welcome everyone. Friday, 11am, right before lunch. I promise to earn your attention.
+Welcome everyone. Friday, right before lunch. I'll earn your attention.
 
 Yesterday I talked about giving agents a safe place to work — isolation, identity, feedback loops.
 
-Today is the other half: once you have that safe ground, how do you actually *work* with agents to build features?
+Today you're going to see me put all of that into practice. I rebuilt confoo.ca — this conference's website — using AI agents working in parallel. Different models, different branches, automated review.
+
+I'll walk you through exactly how it happened, show you the actual agent sessions, and you'll see the working result.
 -->
 
 ---
@@ -53,99 +55,51 @@ class: text-center
 
 <p class="text-2xl text-white/50 font-light leading-relaxed">Yesterday: give agents safe ground.</p>
 
-<p class="text-3xl font-semibold text-white mt-10">Today: work with them effectively on it.</p>
+<p class="text-3xl font-semibold text-white mt-10">Today: build on it.</p>
+
+<p class="mt-12 text-sm text-white/25 font-light">Slides from yesterday → <span class="text-white/40 font-mono">rbarazi.github.io/confoo-2026-safe-agentic-dev-environments</span></p>
 
 </div>
 
 <!--
-If you missed yesterday's talk, quick recap: isolated environments, scoped credentials, verification loops.
+If you missed yesterday's talk — quick version: isolated environments, scoped credentials, verification loops. The trust architecture.
 
-Today is the operator playbook. The tactics.
+Today is the other half. I took a fresh Rails app, pointed AI agents at real ConFoo data — 193 sessions, 108 speakers — and had them build a working conference site.
+
+I'm going to walk you through the whole thing. The setup, the sessions, the results — warts and all.
 -->
 
 ---
-layout: center
-class: text-center
+layout: cover
 background: /img/arcade.jpg
+class: text-left
 ---
 
-<div class="absolute inset-0 bg-gradient-to-b from-black/80 via-black/55 to-black/80 z-1"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent z-1"></div>
 
-<div class="relative z-2">
+<div class="relative z-2 max-w-2xl">
 
-<div class="text-6xl mb-8">🎰</div>
+<h1 class="!text-[2.5rem] !font-light !leading-snug !mb-0">What We're Building</h1>
 
-<h1 class="!font-light !mb-0">The Bingo Machine</h1>
+<div class="mt-10 space-y-4 text-lg text-white/60 font-light">
+<p>ConFoo's conference website → a Rails app</p>
+<p>193 sessions · 108 speakers · real data</p>
+<p>Two agents building in parallel on separate branches</p>
+<p>Automated cross-model code review on every PR</p>
+</div>
 
-<p class="text-xl text-white/60 mt-8 font-light">Allow. Allow. Allow.</p>
-
-<p class="text-2xl font-medium text-white mt-4">"Done."</p>
-
-<p class="text-white/25 mt-6 text-sm italic font-light">...it was not done.</p>
+<div class="mt-10 p-4 bg-white/[0.04] border border-white/[0.08] rounded-xl inline-block">
+<p class="text-white/40 font-mono text-sm">github.com/rbarazi/confoo26</p>
+</div>
 
 </div>
 
 <!--
-Raise your hand if this sounds familiar.
+Here's the goal. Take ConFoo's real conference data and build a working site.
 
-The agent works. It stops. You hit allow. It stops again. Allow. Allow. Allow.
-You're just pulling the lever, waiting for the dopamine hit.
+The repo is public — you can follow along, fork it, try this yourself after. Let me show you where we're starting from.
 
-Then you test it. And it's not done. Not even close.
--->
-
----
-
-# What actually happened
-
-<div class="mt-10 space-y-6 text-lg text-white/60 font-light">
-
-I asked an agent to build a Kafka consumer.
-
-Four steps: consume event → convert HTML → store in DB → expose via API.
-
-The agent built all four pieces. Clean code. Each one worked in isolation.
-
-I tested the full flow.
-
-</div>
-
-<div class="mt-10 p-6 bg-rose-500/[0.06] border border-rose-500/15 rounded-xl">
-
-<span class="text-rose-400 font-medium">The database was empty.</span>
-
-<p class="text-white/40 mt-2 font-light text-sm">Four working components that didn't work together.</p>
-
-</div>
-
-<!--
-The code was genuinely good. Well-structured. Each piece ran fine on its own.
-
-But nobody tested the full flow. Including the agent.
-
-This is the pattern. Agents are trained on code that works in isolation.
-Real features need integration.
--->
-
----
-layout: center
-class: text-center bg-[#080808]
----
-
-<div class="max-w-md mx-auto">
-
-<p class="text-xl text-white/40 font-light">"The feature is production ready."</p>
-
-<p class="text-lg text-white/15 italic font-light mt-12">(it was not)</p>
-
-</div>
-
-<!--
-Agents are optimized to declare victory.
-
-Not because they're lying — because they're trained on examples where isolated components are the deliverable.
-
-Real software doesn't work that way.
+[SHOW THE REPO — the starting Rails app, the data files]
 -->
 
 ---
@@ -153,18 +107,67 @@ layout: center
 class: text-center
 ---
 
-<div class="max-w-xl mx-auto">
+<div class="max-w-2xl mx-auto">
 
-<p class="text-2xl text-white/50 font-light leading-relaxed">The agent didn't fail because it's dumb.</p>
+<div class="text-emerald-400/80 font-light tracking-[0.15em] text-sm uppercase mb-6">Step 1</div>
 
-<p class="text-3xl font-semibold text-amber-400 mt-10">It failed because I gave it an ambiguous job.</p>
+<h1 class="!font-light !mb-0">The Style Guide Skill</h1>
+
+<p class="text-white/40 font-light mt-6 text-lg">Giving agents coding conventions before they write a line</p>
+
+<div class="mt-10 p-4 bg-white/[0.04] border border-white/[0.08] rounded-xl inline-block">
+<p class="text-white/40 font-mono text-sm">github.com/marckohlbrugge/unofficial-37signals-coding-style-guide</p>
+</div>
 
 </div>
 
 <!--
-This is the core insight. It took me a year of daily agent use to really internalize this.
+First thing I did: create a coding style guide skill.
 
-The model isn't the bottleneck. Your instructions are.
+Marc Kohlbrugge put together the unofficial 37signals coding style guide — the conventions behind Basecamp and HEY. Clean, opinionated Rails.
+
+I turned this into an agent "skill" — a reusable package of context that any agent session loads automatically. Think of it like onboarding a contractor: "Here's how we write code around here."
+
+Let me show you the session where this happened.
+
+[SHOW THE COMPLETED SKILL SESSION — walk through what the agent did, the output, the skill structure]
+
+This took about 8 minutes. The agent read the guide, extracted the relevant conventions, structured them as a skill. Now every agent on this project inherits these rules without me pasting them into every prompt.
+
+That's the key: you're building institutional knowledge that persists across sessions.
+-->
+
+---
+layout: center
+class: text-center
+---
+
+<div class="max-w-2xl mx-auto">
+
+<div class="text-amber-400/80 font-light tracking-[0.15em] text-sm uppercase mb-6">Step 2</div>
+
+<h1 class="!font-light !mb-0">Isolated Environments</h1>
+
+<p class="text-white/40 font-light mt-6 text-lg">Two branches · two agents · zero conflicts</p>
+
+<div class="mt-10 p-4 bg-white/[0.04] border border-white/[0.08] rounded-xl inline-block">
+<p class="text-white/40 font-mono text-sm">github.com/branchbox/branchbox</p>
+</div>
+
+</div>
+
+<!--
+Next: isolated environments. This is BranchBox — the tool I talked about yesterday.
+
+Each agent gets its own branch, its own working directory. They can't step on each other.
+
+[SHOW BRANCHBOX SETUP — the two environments, the branch names]
+
+Branch one: Claude. Data models, migrations, import pipeline. Turn 193 sessions and 108 speakers from JSON into a working database.
+
+Branch two: Codex. The UI. Schedule view, speaker pages, session details. Make it look like a conference website.
+
+Same repo, different branches, completely isolated. And both have the style guide skill loaded.
 -->
 
 ---
@@ -177,205 +180,43 @@ class: text-left
 
 <div class="relative z-2 max-w-2xl">
 
-<h1 class="!text-[2.5rem] !font-light !leading-snug !mb-0">The Playbook</h1>
+<div class="text-rose-400/80 font-light tracking-[0.15em] text-sm uppercase mb-6">Step 3</div>
 
-<div class="mt-14 grid grid-cols-3 gap-10">
-<div class="p-8 bg-white/[0.03] backdrop-blur rounded-2xl border border-white/[0.05]">
-<h3 class="text-lg font-semibold text-emerald-400 !uppercase !tracking-wide">Spec</h3>
-<p class="text-white/35 mt-4 font-light text-sm">Define what "done" means</p>
+<h1 class="!text-[2.5rem] !font-light !leading-snug !mb-0">The Agent Sessions</h1>
+
+<div class="grid grid-cols-2 gap-8 mt-10">
+<div class="p-6 bg-white/[0.03] border border-white/[0.06] rounded-2xl">
+<p class="text-amber-400 font-medium text-sm uppercase tracking-wide">Claude</p>
+<p class="text-white/40 font-light mt-3 text-sm">Data models · Import pipeline · API</p>
+<p class="text-white/20 font-light mt-2 text-xs italic">Spec, not step-by-step instructions</p>
 </div>
-<div class="p-8 bg-white/[0.03] backdrop-blur rounded-2xl border border-white/[0.05]">
-<h3 class="text-lg font-semibold text-amber-400 !uppercase !tracking-wide">Verify</h3>
-<p class="text-white/35 mt-4 font-light text-sm">Prove the work holds up</p>
+<div class="p-6 bg-white/[0.03] border border-white/[0.06] rounded-2xl">
+<p class="text-emerald-400 font-medium text-sm uppercase tracking-wide">Codex</p>
+<p class="text-white/40 font-light mt-3 text-sm">Schedule UI · Speaker pages · Navigation</p>
+<p class="text-white/20 font-light mt-2 text-xs italic">Style guide skill loaded automatically</p>
 </div>
-<div class="p-8 bg-white/[0.03] backdrop-blur rounded-2xl border border-white/[0.05]">
-<h3 class="text-lg font-semibold text-rose-400 !uppercase !tracking-wide">Decompose</h3>
-<p class="text-white/35 mt-4 font-light text-sm">Split work across agents</p>
 </div>
+
+<div class="mt-10 p-5 bg-white/[0.03] border border-white/[0.06] rounded-xl">
+<p class="text-white/50 font-light text-sm"><span class="text-white/70 font-medium">The spec is a convincing argument</span> — not instructions. Context, constraints, what "done" looks like. Same walkthrough you'd give a new teammate on day one.</p>
 </div>
 
 </div>
 
 <!--
-Three pillars.
+Here's where it gets interesting. Let me show you what each agent actually did.
 
-First: specs. What does done actually look like?
-Second: verification loops. How does the agent prove its own work?
-Third: decomposition. How do you split complex features across agents?
+I gave them specs — not step-by-step instructions. A spec is a convincing argument. Why this feature matters, what the constraints are, what done looks like. Same briefing you'd give a coworker.
 
-Let's go through each one.
--->
+[SHOW CLAUDE'S SESSION — walk through the spec, the agent's work, key decisions it made]
 
----
-layout: section
----
+Notice how Claude figured out the schema on its own. I didn't say "create a sessions table with these columns." I said "we have 193 sessions with this JSON structure, build the data layer." The agent reads the data and makes the architectural calls.
 
-<div class="text-emerald-400/80 font-light tracking-[0.15em] text-sm uppercase">Part I</div>
+[SHOW CODEX'S SESSION — walk through the UI work, where the style guide influenced decisions]
 
-# The Spec
+And here's Codex on the UI branch. See where the style guide kicked in — [point out specific convention choices]. That's the skill doing its job. I didn't have to say "use partials" or "keep controllers thin" in every prompt.
 
-<div class="text-white/30 font-light mt-3 text-lg">Define done before you start</div>
-
----
-
-# How my prompts evolved
-
-<div class="mt-10">
-
-<div class="text-emerald-400/80 font-light tracking-[0.15em] text-sm uppercase mb-4">Phase 1 · Vibes</div>
-
-<div class="p-6 bg-white/[0.02] border border-white/[0.05] rounded-xl">
-
-> "Implement the OpenAI Responses API."
-
-</div>
-
-<p class="mt-4 text-white/25 text-sm font-light">Allow. Allow. Allow. 🎰</p>
-
-</div>
-
-<!--
-My earliest prompts were just... wishes.
-
-"Implement X." Then I'd hit allow 47 times and hope for the best.
--->
-
----
-
-# How my prompts evolved
-
-<div class="mt-10">
-
-<div class="text-amber-400/80 font-light tracking-[0.15em] text-sm uppercase mb-4">Phase 2 · File pointers</div>
-
-<div class="p-6 bg-white/[0.02] border border-white/[0.05] rounded-xl">
-
-> "Implement the Responses API. Look at `app/services/llm_provider.rb` and follow the pattern in `openai_provider.rb`."
-
-</div>
-
-<p class="mt-4 text-white/25 text-sm font-light">Better, but still missing context.</p>
-
-</div>
-
-<!--
-Cursor's @ mentions forced me to think about which files mattered.
-That was the first shift: from "just do it" to "here's where to look."
--->
-
----
-
-# How my prompts evolved
-
-<div class="mt-8">
-
-<div class="text-rose-400/80 font-light tracking-[0.15em] text-sm uppercase mb-4">Phase 3 · The convincing argument</div>
-
-```markdown
-We need to add support for OpenAI's Responses API.
-
-Context: our LLMProvider abstraction lets us swap providers
-without changing the Task model. Each provider implements
-send_message, and right now they all work the same way.
-
-The Responses API breaks that assumption. It's stateful.
-OpenAI holds the conversation server-side.
-
-Constraint: session logic should only affect OpenAIProvider.
-The others still work statelessly.
-
-Before you start coding, write a plan to
-docs/backlog/openai_responses_api.md
-```
-
-</div>
-
-<!--
-This is what works. Not instructions. A convincing argument.
-
-Why the change matters. What the constraints are. What done looks like.
-
-And — crucially — I'm asking the agent to show me its thinking before it writes code.
-
-This is the same walkthrough you'd give a coworker.
--->
-
----
-
-# The spec is a contract
-
-<div class="mt-10">
-
-```
-docs/
-├── backlog/
-│   └── feature-x.md        ← not started
-├── in-progress/
-│   └── feature-y.md        ← agent is working on this
-└── manual-tests/
-    └── feature-y.md        ← how to verify it works
-```
-
-</div>
-
-<div class="mt-8 p-5 bg-emerald-500/[0.06] border border-emerald-500/15 rounded-xl">
-
-<span class="text-emerald-400/90 font-medium text-sm">Every feature starts with a spec — a written document that describes what "done" looks like.</span>
-
-</div>
-
-<!--
-I keep these in a docs folder. Backlog for things I haven't started.
-In-progress for active work. Manual-tests for verification scripts.
-
-When I kick off an agent session, I point it at the spec.
-The agent reads the plan, understands the success criteria,
-and tracks progress against it.
--->
-
----
-
-# What goes in a spec
-
-<div class="grid grid-cols-2 gap-12 mt-12">
-<div class="p-8 bg-emerald-500/[0.03] border border-emerald-500/10 rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-emerald-400/80">Include</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-- What the feature does (user perspective)
-- Architecture constraints
-- What success looks like
-- Edge cases you're worried about
-- How to verify it manually
-
-</div>
-
-</div>
-<div class="p-8 bg-rose-500/[0.03] border border-rose-500/10 rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-rose-400/80">Skip</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-- Implementation details
-- Which files to edit
-- Step-by-step instructions
-- Technology choices
-
-</div>
-
-</div>
-</div>
-
-<!--
-The agent figures out the HOW.
-You define the WHAT and the WHY.
-
-That division of labor is the whole point.
-If you're writing step-by-step instructions,
-you might as well write the code yourself.
+These ran in parallel. While Claude was building migrations, Codex was laying out views. Neither knew about the other.
 -->
 
 ---
@@ -383,683 +224,43 @@ layout: center
 class: text-center
 ---
 
-<div class="max-w-xl mx-auto">
+<div class="max-w-2xl mx-auto">
 
-<p class="text-2xl text-white/50 font-light">The spec is a convincing argument.</p>
+<div class="text-violet-400/80 font-light tracking-[0.15em] text-sm uppercase mb-6">Step 4</div>
 
-<p class="text-2xl font-medium text-white mt-6">Not instructions — context.</p>
+<h1 class="!font-light !mb-0">Cross-Model Review</h1>
 
-<p class="mt-14 text-base text-white/25 italic font-light">Same walkthrough you'd give a new teammate on their first day.</p>
+<p class="text-white/40 font-light mt-6 text-lg">Claude builds · Codex builds · Gemini reviews</p>
 
+<div class="grid grid-cols-3 gap-6 mt-10 max-w-lg mx-auto">
+<div class="p-4 bg-white/[0.03] border border-white/[0.06] rounded-xl text-center">
+<p class="text-amber-400 font-medium text-xs uppercase">Claude</p>
+<p class="text-white/30 text-xs mt-1">Build</p>
 </div>
-
-<!--
-Think about how you onboard a new hire.
-
-You don't hand them a list of files to edit.
-You explain the system. The constraints. The history.
-Why things are the way they are.
-
-Do the same for your agent.
--->
-
----
-layout: section
----
-
-<div class="text-amber-400/80 font-light tracking-[0.15em] text-sm uppercase">Part II</div>
-
-# The Verification Loop
-
-<div class="text-white/30 font-light mt-3 text-lg">Prove it works · End to end</div>
-
----
-
-# The agent's definition of "done"
-
-<div class="grid grid-cols-2 gap-12 mt-12">
-<div class="p-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl text-center">
-
-<h3 class="!text-sm !tracking-wide text-white/60">The Agent</h3>
-
-<p class="text-2xl font-medium text-white mt-6">"Done" = code compiles</p>
-
-<div class="text-white/35 mt-5 space-y-2 font-light text-sm">
-<p>Tests pass.</p>
-<p>Linter is happy.</p>
-<p>Ship it.</p>
+<div class="p-4 bg-white/[0.03] border border-white/[0.06] rounded-xl text-center">
+<p class="text-emerald-400 font-medium text-xs uppercase">Codex</p>
+<p class="text-white/30 text-xs mt-1">Build</p>
 </div>
-
-</div>
-<div class="p-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl text-center">
-
-<h3 class="!text-sm !tracking-wide text-white/60">You</h3>
-
-<p class="text-2xl font-medium text-white mt-6">"Done" = feature works</p>
-
-<div class="text-white/35 mt-5 space-y-2 font-light text-sm">
-<p>User can do the thing.</p>
-<p>End-to-end.</p>
-<p>Actually works.</p>
-</div>
-
-</div>
-</div>
-
-<!--
-Agents are trained to declare success.
-Their definition of "done" is: code compiles, tests pass, ship it.
-
-Your definition of "done" is: the user can actually do the thing.
-
-These are different.
--->
-
----
-
-# Give the agent a way to check its own work
-
-<div class="mt-8">
-
-```markdown
-## Manual Test: Weather Agent
-
-### 1. Login
-1. Navigate to APP_URL
-2. Login with admin credentials
-3. Verify dashboard loads
-
-### 2. Test Weather Query
-1. Type: "What's the weather in Toronto?"
-2. Send the message
-3. Expected: weather widget renders with temperature
-
-### 3. Test Multiple Cities
-1. Type: "Forecast for Tokyo, Toronto, Dubai?"
-2. Expected: 3 separate widget cards
-```
-
-</div>
-
-<p class="text-white/25 text-sm mt-4 font-light">Markdown. Human-readable. Agent-executable.</p>
-
-<!--
-This is just markdown. A human could follow these steps.
-But with Playwright, so can the agent.
-
-The key insight: "manual" describes the format, not the executor.
-
-If you've written Cucumber specs, this will feel very familiar.
-Except these are cheaper to write and more forgiving to run.
--->
-
----
-
-# The self-healing loop
-
-<div class="flex justify-center mt-14">
-<div class="flex items-center gap-8">
-
-<div class="p-6 bg-white/[0.03] rounded-2xl border border-white/[0.05] text-center w-28">
-<p class="text-white/60 font-medium text-sm">Change</p>
-</div>
-
-<div class="text-white/15 text-xl">→</div>
-
-<div class="p-6 bg-amber-500/[0.06] rounded-2xl border border-amber-500/10 text-center w-28">
-<p class="text-amber-400/80 font-medium text-sm">Test</p>
-</div>
-
-<div class="text-white/15 text-xl">→</div>
-
-<div class="p-6 bg-rose-500/[0.06] rounded-2xl border border-rose-500/10 text-center w-28">
-<p class="text-rose-400/80 font-medium text-sm">Fail?</p>
-</div>
-
-<div class="text-white/15 text-xl">→</div>
-
-<div class="p-6 bg-emerald-500/[0.06] rounded-2xl border border-emerald-500/10 text-center w-28">
-<p class="text-emerald-400/80 font-medium text-sm">Fix + Retry</p>
-</div>
-
-</div>
-</div>
-
-<p class="text-center mt-6 text-white/20 text-xs italic font-light tracking-wide">repeat until green</p>
-
-<div class="mt-10 p-5 bg-white/[0.02] border border-white/[0.05] rounded-xl">
-
-<span class="text-white/50 font-light text-sm"><strong class="text-white/70">Real example:</strong> code review said "move this logic." Agent refactored. Widgets stopped rendering. Agent caught it immediately — it knew what it just moved. Fixed it. Re-ran the test. Green. ✅</span>
-
-</div>
-
-<!--
-This actually happened. A reviewer asked me to refactor something.
-The agent moved the code. The manual test broke.
-
-Because the agent ran the test itself, it immediately knew what broke and why.
-It had just moved that code. It fixed it and re-verified. Green.
-
-Without the manual test, I would have been the one clicking through the UI
-to discover the regression. That's a 20-minute detour every time.
--->
-
----
-layout: center
-class: text-center
----
-
-<div class="max-w-xl mx-auto">
-
-<p class="text-3xl font-light text-white/60">An agent without verification</p>
-
-<p class="text-3xl font-semibold text-amber-400 mt-6">is just autocomplete with confidence.</p>
-
-</div>
-
-<!--
-Let that sink in for a second.
-
-If you're not giving the agent a way to prove its work,
-you're trusting vibes.
--->
-
----
-
-# Run verification cheaply
-
-<div class="grid grid-cols-2 gap-12 mt-12">
-<div class="p-8 bg-rose-500/[0.03] border border-rose-500/10 rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-rose-400/80">Wrong</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-One session does everything:
-- Writes the feature
-- Runs Playwright
-- Analyzes screenshots
-- Fixes bugs
-- Context explodes 💥
-
-</div>
-
-</div>
-<div class="p-8 bg-emerald-500/[0.03] border border-emerald-500/10 rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-emerald-400/80">Right</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-Split the work:
-- **Session 1:** writes code + unit tests
-- **Session 2:** runs manual tests
-- Feed results back to Session 1
-- Context stays clean 🧹
-
-</div>
-
-</div>
-</div>
-
-<p class="text-white/25 text-sm mt-8 font-light text-center">Playwright is token-heavy. Keep your implementation context lean.</p>
-
-<!--
-Playwright eats context for breakfast.
-Every DOM snapshot, every page state, adds thousands of tokens.
-
-Don't bloat your implementation session with verification output.
-Use a separate, cheaper session for running tests.
-Feed the results back as input.
--->
-
----
-layout: section
----
-
-<div class="text-rose-400/80 font-light tracking-[0.15em] text-sm uppercase">Part III</div>
-
-# Decomposition
-
-<div class="text-white/30 font-light mt-3 text-lg">One agent, one concern</div>
-
----
-
-# One agent, one concern
-
-<div class="flex justify-center mt-14">
-<div class="flex items-center gap-8">
-
-<div class="p-6 bg-white/[0.03] rounded-2xl border border-white/[0.05] text-center w-24">
-<p class="text-white/60 font-medium text-sm">🧑‍💻</p>
-<p class="text-white/40 text-xs mt-1">You</p>
-</div>
-
-<div class="text-white/15 text-xl">→</div>
-
-<div class="p-6 bg-emerald-500/[0.06] rounded-2xl border border-emerald-500/10 text-center w-24">
-<p class="text-emerald-400/80 font-medium text-sm">🤖 A</p>
-<p class="text-white/30 text-xs mt-1">Backend</p>
-</div>
-
-<div class="p-6 bg-amber-500/[0.06] rounded-2xl border border-amber-500/10 text-center w-24">
-<p class="text-amber-400/80 font-medium text-sm">🤖 B</p>
-<p class="text-white/30 text-xs mt-1">Frontend</p>
-</div>
-
-<div class="p-6 bg-sky-500/[0.06] rounded-2xl border border-sky-500/10 text-center w-24">
-<p class="text-sky-400/80 font-medium text-sm">🤖 C</p>
-<p class="text-white/30 text-xs mt-1">Verify</p>
-</div>
-
-<div class="p-6 bg-rose-500/[0.06] rounded-2xl border border-rose-500/10 text-center w-24">
-<p class="text-rose-400/80 font-medium text-sm">🤖 D</p>
+<div class="p-4 bg-white/[0.03] border border-white/[0.06] rounded-xl text-center">
+<p class="text-rose-400 font-medium text-xs uppercase">Gemini</p>
 <p class="text-white/30 text-xs mt-1">Review</p>
 </div>
-
-</div>
 </div>
 
-<p class="mt-12 text-center text-base text-white/40 font-light">You decompose the feature. Each agent owns one concern.</p>
-
-<!--
-You wouldn't ask one engineer to build the entire feature,
-test it, review their own code, and deploy it.
-
-Don't ask one agent to do that either.
-
-Decompose the work. One agent per concern.
--->
-
----
-
-# Why decomposition works
-
-<div class="grid grid-cols-2 gap-12 mt-12">
-<div class="p-8 bg-rose-500/[0.03] border border-rose-500/10 rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-rose-400/80">Single agent</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-- Context grows unbounded
-- Loses focus mid-task
-- "Remembers" less as session grows
-- Can't review its own work
-- Optimizes for completion over correctness
-
-</div>
-
-</div>
-<div class="p-8 bg-emerald-500/[0.03] border border-emerald-500/10 rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-emerald-400/80">Multi-agent</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-- Each agent has focused context
-- Clear deliverable per session
-- Fresh perspective on review
-- Structural separation of concerns
-- Fails independently
-
-</div>
-
-</div>
-</div>
-
-<!--
-Context is finite. The longer a session runs,
-the more the agent forgets earlier context.
-
-Short, focused sessions with clear deliverables
-produce dramatically better results.
--->
-
----
-
-# The handoff rhythm
-
-<div class="mt-10 space-y-4">
-
-```
-Spec (you)
-  → Build agent reads spec, writes code
-    → Test agent runs verification
-      → Fails? → Build agent fixes
-      → Passes? → Review agent reviews PR
-        → Comments? → Build agent addresses feedback
-          → Re-verify → merge
-```
-
-</div>
-
-<div class="mt-10 p-5 bg-white/[0.02] border border-white/[0.05] rounded-xl">
-
-<p class="text-white/50 font-light text-sm"><strong class="text-white/70">Your job:</strong> define the spec, trigger the handoffs, make the final call.</p>
-<p class="text-white/50 font-light text-sm mt-1"><strong class="text-white/70">Their job:</strong> write, test, review, iterate.</p>
+<p class="mt-10 text-lg text-white/50 font-light">Structural dissent <span class="text-amber-400 font-medium">by design</span>.</p>
 
 </div>
 
 <!--
-This is the workflow I've landed on.
+When the agents opened PRs, Gemini code review fired automatically. Different model, fresh context, no knowledge of the build session.
 
-You define the spec. The build agent works on it.
-The test agent verifies. If it fails, it goes back to the build agent.
-A review agent looks at the PR with fresh eyes.
+[SHOW THE PR — Gemini's actual review comments, the back-and-forth]
 
-You're the conductor. They're the orchestra.
--->
+This is structural dissent by design. Claude has blind spots. Gemini has different ones. When they review each other, they catch things a single model would miss.
 
----
+Same principle as human code review — someone who didn't write the code reviews it.
 
-# Cross-agent review
-
-<div class="grid grid-cols-2 gap-10 mt-12">
-<div class="p-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-emerald-400/80">Build Agent (Claude Code)</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-- Has full context
-- Writes the feature
-- Runs unit tests
-- Creates the PR
-
-</div>
-
-</div>
-<div class="p-8 bg-white/[0.02] border border-white/[0.05] rounded-2xl">
-
-<h3 class="!text-sm !tracking-wide text-sky-400/80">Review Agent (Gemini)</h3>
-
-<div class="text-white/45 mt-5 space-y-3 font-light text-[15px]">
-
-- Fresh context
-- Different model = different blind spots
-- Reads the diff cold
-- Posts review comments
-
-</div>
-
-</div>
-</div>
-
-<p class="mt-10 text-center text-lg text-white/50 font-light">Structural dissent <span class="text-amber-400 font-medium">by design</span>.</p>
-
-<!--
-I actually use different models for build and review.
-
-Claude builds. Gemini reviews. Different training, different blind spots.
-
-If Claude misses something, Gemini is more likely to catch it.
-And vice versa.
-
-It's the same principle as human code review:
-someone who didn't write the code reviews it.
--->
-
----
-
-# Tool design matters
-
-<div class="grid grid-cols-2 gap-12 mt-12">
-<div>
-
-<div class="text-rose-400/80 font-light tracking-[0.15em] text-sm uppercase mb-4">Before · Steps</div>
-
-```bash
-docker compose down
-docker compose up -d
-rails db:seed
-cloudflared tunnel run
-curl http://localhost:3000/health
-```
-
-</div>
-<div>
-
-<div class="text-emerald-400/80 font-light tracking-[0.15em] text-sm uppercase mb-4">After · Jobs</div>
-
-```bash
-bin/reset-dev
-```
-
-</div>
-</div>
-
-<div class="mt-10 p-5 bg-emerald-500/[0.06] border border-emerald-500/15 rounded-xl">
-
-<span class="text-emerald-400/90 font-medium text-sm">A scripted tool that does one thing beats a chain the agent orchestrates every time.</span>
-
-</div>
-
-<!--
-Your tools shape how agents work.
-
-I'll notice the agent running the same 4-5 commands every time
-it needs to reset the dev environment.
-
-So I have a "meta session" — I ask the agent to script
-that sequence into a single command.
-
-Now instead of watching it chain docker and rails commands,
-it just runs bin/reset-dev.
-
-Jobs, not steps. Same principle as Unix philosophy.
--->
-
----
-
-# Meta sessions: agents building their own tools
-
-<div class="mt-10 p-6 bg-white/[0.02] border border-white/[0.05] rounded-xl">
-
-```markdown
-You keep running these 4 commands every time you test webhooks:
-
-1. docker compose restart app
-2. cloudflared tunnel run
-3. curl -X POST ...
-4. tail -f logs/development.log
-
-Write a script at bin/test-webhook that does all of this.
-Document it in the README.
-```
-
-</div>
-
-<p class="mt-8 text-white/30 text-sm font-light text-center">Next agent session is cleaner, leaner, faster.</p>
-
-<!--
-This is one of my favorite patterns.
-
-Instead of fixing the symptom each time,
-fix the workflow.
-
-Have the agent write a tool for future agents.
-The next session starts with better infrastructure.
--->
-
----
-layout: center
-class: text-center
----
-
-<div class="max-w-xl mx-auto">
-
-<p class="text-2xl text-white/50 font-light">The best prompt optimization is</p>
-
-<p class="text-3xl font-semibold text-white mt-6">fewer prompts.</p>
-
-<p class="mt-14 text-base text-white/25 italic font-light">Script the repetitive stuff. Invest in better tools, not more words.</p>
-
-</div>
-
-<!--
-People obsess over prompt engineering.
-Tweaking words. Adding examples. Chain-of-thought this. Few-shot that.
-
-The biggest wins I've gotten weren't from better prompts.
-They were from better tools that eliminated the need for prompts.
--->
-
----
-
-# Putting it all together
-
-<div class="grid grid-cols-4 gap-6 mt-14">
-<div class="p-6 bg-white/[0.02] border border-white/[0.05] rounded-2xl text-center">
-<div class="text-2xl mb-3">📋</div>
-<h3 class="!text-sm font-semibold text-emerald-400">1. Spec</h3>
-<p class="text-white/35 mt-3 font-light text-xs">What does done look like?</p>
-</div>
-<div class="p-6 bg-white/[0.02] border border-white/[0.05] rounded-2xl text-center">
-<div class="text-2xl mb-3">🤖</div>
-<h3 class="!text-sm font-semibold text-amber-400">2. Build</h3>
-<p class="text-white/35 mt-3 font-light text-xs">Agent works the spec</p>
-</div>
-<div class="p-6 bg-white/[0.02] border border-white/[0.05] rounded-2xl text-center">
-<div class="text-2xl mb-3">🔄</div>
-<h3 class="!text-sm font-semibold text-sky-400">3. Verify</h3>
-<p class="text-white/35 mt-3 font-light text-xs">Agent proves the work</p>
-</div>
-<div class="p-6 bg-white/[0.02] border border-white/[0.05] rounded-2xl text-center">
-<div class="text-2xl mb-3">👀</div>
-<h3 class="!text-sm font-semibold text-rose-400">4. Review</h3>
-<p class="text-white/35 mt-3 font-light text-xs">Fresh eyes, different model</p>
-</div>
-</div>
-
-<div class="text-center mt-10">
-
-<p class="text-white/50 font-light">You define the <span class="text-white font-medium">what</span>. Agents figure out the <span class="text-white font-medium">how</span>.</p>
-
-<p class="text-white/25 text-sm font-light mt-2">Human reviews only after verification passes.</p>
-
-</div>
-
-<!--
-This is the full loop. Spec, build, verify, review.
-
-You're not writing code. You're not even reviewing code most of the time.
-You're defining what matters and validating outcomes.
--->
-
----
-
-# The failure modes (and fixes)
-
-<div class="mt-8 space-y-3">
-
-<div class="grid grid-cols-3 gap-4 text-sm p-3 bg-white/[0.02] rounded-lg">
-<span class="text-white/50 font-light">Agent builds wrong thing</span>
-<span class="text-white/30 font-light">Vague spec</span>
-<span class="text-emerald-400/80 font-medium">Write the convincing argument</span>
-</div>
-
-<div class="grid grid-cols-3 gap-4 text-sm p-3 bg-white/[0.02] rounded-lg">
-<span class="text-white/50 font-light">Code works in isolation</span>
-<span class="text-white/30 font-light">No e2e verification</span>
-<span class="text-emerald-400/80 font-medium">Add manual test scripts</span>
-</div>
-
-<div class="grid grid-cols-3 gap-4 text-sm p-3 bg-white/[0.02] rounded-lg">
-<span class="text-white/50 font-light">Agent loses context</span>
-<span class="text-white/30 font-light">Session too long</span>
-<span class="text-emerald-400/80 font-medium">Decompose into subagents</span>
-</div>
-
-<div class="grid grid-cols-3 gap-4 text-sm p-3 bg-white/[0.02] rounded-lg">
-<span class="text-white/50 font-light">Same errors keep recurring</span>
-<span class="text-white/30 font-light">No tool improvement</span>
-<span class="text-emerald-400/80 font-medium">Meta sessions → bin/ scripts</span>
-</div>
-
-<div class="grid grid-cols-3 gap-4 text-sm p-3 bg-white/[0.02] rounded-lg">
-<span class="text-white/50 font-light">Agent fakes "done"</span>
-<span class="text-white/30 font-light">No verification mechanism</span>
-<span class="text-emerald-400/80 font-medium">Playwright + manual tests</span>
-</div>
-
-<div class="grid grid-cols-3 gap-4 text-sm p-3 bg-white/[0.02] rounded-lg">
-<span class="text-white/50 font-light">Review misses things</span>
-<span class="text-white/30 font-light">Same model reviews own code</span>
-<span class="text-emerald-400/80 font-medium">Cross-model review</span>
-</div>
-
-</div>
-
-<!--
-Quick reference. These are the six failure modes I hit most often,
-and the fix for each one.
-
-You'll notice a pattern: every fix is about structure, not prompting.
--->
-
----
-layout: center
-class: text-center
----
-
-<div class="max-w-xl mx-auto">
-
-<p class="text-2xl text-white/50 font-light">You're not prompting.</p>
-
-<p class="text-3xl font-semibold text-white mt-6">You're collaborating.</p>
-
-</div>
-
-<!--
-This is the mindset shift.
-
-Stop thinking of the agent as a tool you prompt.
-Start thinking of it as a teammate you onboard.
-
-Give it context. Give it constraints. Give it tools to verify.
-Then get out of its way.
--->
-
----
-
-# What changes with better models?
-
-<div class="mt-10 space-y-8">
-
-<div class="text-lg text-white/60 font-light space-y-3">
-
-<p>Better native code search → fewer file pointers needed</p>
-<p>Larger context windows → longer sessions before decomposition</p>
-<p>Better reasoning → less hand-holding on architecture</p>
-
-</div>
-
-<div class="p-6 bg-amber-500/[0.06] border border-amber-500/15 rounded-xl">
-
-<span class="text-amber-400 font-medium">What doesn't change:</span>
-
-<div class="text-white/45 mt-3 space-y-2 font-light text-sm">
-
-<p>You still define what "done" means.</p>
-<p>You still own the verification criteria.</p>
-<p>You still decide when to ship.</p>
-
-</div>
-
-</div>
-
-</div>
-
-<!--
-Models will keep improving. Context will get longer.
-The specifics of decomposition will evolve.
-
-But the principles hold:
-specs, verification, decomposition, tool design.
-
-The agent's ceiling keeps rising.
-Your job is to raise it faster.
+[Walk through a specific review comment and how the agent addressed it]
 -->
 
 ---
@@ -1072,28 +273,20 @@ class: text-center
 
 <div class="relative z-2">
 
-<h1 class="!font-light !mb-0">The Playbook</h1>
+<h1 class="!font-light !mb-0 !text-5xl">The Result</h1>
 
-<div class="mt-12 text-left inline-block space-y-4 text-lg text-white/60 font-light">
-
-<p><span class="text-emerald-400 font-medium">1.</span> Write the spec — define done before you start</p>
-<p><span class="text-emerald-400 font-medium">2.</span> Ask for a plan first — "write it to docs/ before you code"</p>
-<p><span class="text-emerald-400 font-medium">3.</span> Manual test scripts — Playwright + markdown</p>
-<p><span class="text-emerald-400 font-medium">4.</span> Decompose — one agent per concern</p>
-<p><span class="text-emerald-400 font-medium">5.</span> Cross-model review — structural dissent</p>
-<p><span class="text-emerald-400 font-medium">6.</span> Meta sessions — agents build tools for future agents</p>
-<p><span class="text-emerald-400 font-medium">7.</span> Jobs, not steps — `bin/` scripts over command chains</p>
-
-</div>
+<p class="text-white/40 font-light mt-8 text-lg">Merge · refresh · ship.</p>
 
 </div>
 
 <!--
-Take a photo of this slide if you want the cheat sheet.
+Let's see the final product.
 
-These seven patterns took me a year to figure out.
-Each one individually improved my workflow.
-Together, they're transformative.
+[SHOW THE WORKING APP — merge the PRs, show the live site with real ConFoo data]
+
+That's your conference. 193 sessions, 108 speakers. Schedule view, speaker pages, session details. Built by AI agents on isolated branches, reviewed by a third model.
+
+[Click through a few pages, show the data is real]
 -->
 
 ---
@@ -1101,50 +294,41 @@ layout: center
 class: text-center
 ---
 
-<div class="max-w-xl mx-auto">
+<div class="max-w-2xl mx-auto">
 
-<p class="text-xl text-white/40 font-light">Yesterday: <span class="text-white/60 font-medium">Safe Agentic Dev Environments</span></p>
-<p class="text-white/25 text-sm font-light mt-1">Isolation. Identity. Feedback loops.</p>
+<h1 class="!font-light !mb-0">What Just Happened</h1>
 
-<p class="text-xl text-white/40 font-light mt-10">Today: <span class="text-white/60 font-medium">Agentic Coding</span></p>
-<p class="text-white/25 text-sm font-light mt-1">Specs. Verification. Decomposition.</p>
+<div class="mt-10 text-left inline-block space-y-4 text-lg text-white/60 font-light">
+<p><span class="text-emerald-400 font-medium">1.</span> Created a style guide skill from an open-source repo</p>
+<p><span class="text-emerald-400 font-medium">2.</span> Spun up isolated environments with BranchBox</p>
+<p><span class="text-emerald-400 font-medium">3.</span> Two agents built in parallel — Claude (data) + Codex (UI)</p>
+<p><span class="text-emerald-400 font-medium">4.</span> Both inherited the same coding conventions automatically</p>
+<p><span class="text-emerald-400 font-medium">5.</span> Gemini reviewed every PR — different model, fresh eyes</p>
+<p><span class="text-emerald-400 font-medium">6.</span> Merged and shipped a working app with real data</p>
+</div>
 
-<p class="mt-14 text-2xl font-medium text-emerald-400">Safe ground + effective tactics = reliable AI teammates.</p>
+<div class="mt-10 p-5 bg-emerald-500/[0.06] border border-emerald-500/15 rounded-xl">
+<p class="text-emerald-400/90 font-medium">The model isn't the bottleneck. Your workflow is.</p>
+</div>
 
 </div>
 
 <!--
-These two talks are two halves of the same story.
+Let me recap what you just saw.
 
-Yesterday: build the trust architecture.
-Today: operate within it effectively.
+We turned an open-source style guide into a reusable agent skill. Once. Every session after that gets it for free.
 
-You need both. Safe environments without good tactics wastes the agent's potential.
-Good tactics without safe environments means you can't actually let go.
--->
+We spun up isolated environments so agents could work in parallel without stepping on each other.
 
----
-layout: center
-class: text-center
----
+Two different models — Claude and Codex — got focused specs and built simultaneously. Neither knew about the other. Both followed the same conventions.
 
-<div class="max-w-xl mx-auto">
+A third model — Gemini — reviewed their PRs with fresh context.
 
-<p class="text-2xl text-white/50 font-light">The model isn't the bottleneck.</p>
+And we got a working app.
 
-<p class="text-3xl font-semibold text-white mt-6">Your workflow is.</p>
+None of this required exotic infrastructure. BranchBox is open source. The skill is a markdown file. The review is a GitHub App.
 
-<p class="text-2xl font-medium text-emerald-400 mt-10">Fix the workflow.</p>
-
-</div>
-
-<!--
-Every time you're frustrated with an agent, ask:
-"Did I give it what it needs to succeed?"
-
-Usually the answer is no.
-
-Fix that, and the results change dramatically.
+The magic isn't the models. It's the workflow around them.
 -->
 
 ---
@@ -1157,17 +341,20 @@ class: text-center
 
 <div class="relative z-2 flex flex-col items-center justify-center h-full">
 
-<h1 class="!font-light !text-4xl !mb-0">Thank you</h1>
+<h1 class="!font-light !text-4xl !mb-0">Thank You</h1>
 
 <p class="mt-4 text-base text-white/40 font-light">Rida Al Barazi · rida.me · @rida</p>
 
 <p class="mt-2 text-white/25 text-sm italic font-light">"The model isn't the bottleneck. Your workflow is."</p>
 
-<div class="grid grid-cols-2 gap-16 mt-12 items-center max-w-lg mx-auto">
-<div class="text-left text-white/25 text-sm space-y-3 font-light">
+<div class="mt-10 grid grid-cols-2 gap-16 items-start max-w-2xl mx-auto">
+<div class="text-left text-white/30 text-sm space-y-3 font-light">
 
-<p>BranchBox: github.com/branchbox/branchbox</p>
-<p>Blog: rida.me/blog</p>
+<p><span class="text-white/50">App repo:</span> github.com/rbarazi/confoo26</p>
+<p><span class="text-white/50">Style guide:</span> github.com/marckohlbrugge/unofficial-37signals-coding-style-guide</p>
+<p><span class="text-white/50">BranchBox:</span> github.com/branchbox/branchbox</p>
+<p><span class="text-white/50">Yesterday's talk:</span> rbarazi.github.io/confoo-2026-safe-agentic-dev-environments</p>
+<p><span class="text-white/50">Blog:</span> rida.me/blog</p>
 
 </div>
 <div>
@@ -1181,12 +368,9 @@ class: text-center
 </div>
 
 <!--
-Thank you. I hope this was useful.
+Thank you. All the links are on this slide — take a photo.
 
-If you want to dig deeper, I've written about all of these patterns
-on my blog at rida.me.
-
-BranchBox is the open-source tool I built for the environment side.
+The app repo is public. The style guide is public. BranchBox is open source. You can try this exact workflow on Monday.
 
 Happy to chat after — I'll be around for the rest of the day.
 
