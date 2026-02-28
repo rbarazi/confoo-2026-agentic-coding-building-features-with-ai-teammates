@@ -6,13 +6,16 @@
   "scripts": {
     "dev": "slidev",
     "build": "slidev build",
-    "export": "slidev export"
+    "export": "slidev export --dark --output slides-export.pdf",
+    "export:png": "slidev export --dark --format png --output slides",
+    "export:pptx": "slidev export --dark --format pptx --output slides-export.pptx"
   },
   "dependencies": {
     "@fontsource-variable/inter": "^5.2.8",
     "@fontsource/jetbrains-mono": "^5.2.8",
     "@slidev/cli": "latest",
     "@slidev/theme-default": "latest",
-    "@slidev/theme-seriph": "^0.25.0"
+    "@slidev/theme-seriph": "^0.25.0",
+    "playwright-chromium": "^1.50.0"
   }
 }

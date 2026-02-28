@@ -1,0 +1,26 @@
+{
+  "name": "Slidev Export",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "features": {
+    "ghcr.io/devcontainers/features/node:1": {
+      "version": "22"
+    }
+  },
+  "postCreateCommand": "npm install && npx playwright install chromium",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "antfu.slidev"
+      ]
+    }
+  },
+  "forwardPorts": [3030],
+  "portsAttributes": {
+    "3030": {
+      "label": "Slidev",
+      "onAutoForward": "openBrowser"
+    }
+  }
+}
