@@ -1,11 +1,10 @@
-# Debian Bookworm base — multi-arch (amd64 + arm64)
-FROM mcr.microsoft.com/devcontainers/base:bookworm
+# node:22-slim — smallest official Node.js image (~200 MB), multi-arch
+FROM node:22-slim
 
-# Install Playwright system dependencies (browsers need these)
+# Install Playwright system dependencies (Chromium dynamically links against these)
 RUN apt-get update && apt-get install -y --no-install-recommends \
     libnspr4 \
     libnss3 \
-    libnssutil3 \
     libatk1.0-0 \
     libatk-bridge2.0-0 \
     libdbus-1-3 \

@@ -3,10 +3,8 @@
   "build": {
     "dockerfile": "Dockerfile"
   },
-  "features": {
-    "ghcr.io/devcontainers/features/node:1": {
-      "version": "22"
-    }
+  "containerEnv": {
+    "PLAYWRIGHT_DOWNLOAD_CONNECTION_TIMEOUT": "300000"
   },
   "postCreateCommand": "npm install && npx playwright install chromium",
   "customizations": {
